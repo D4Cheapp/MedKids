@@ -23,11 +23,11 @@ export class MedicalRecord {
   @JoinColumn({ name: 'procedure_type_id' })
   procedureType: ProcedureType;
 
-  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id, { eager: true })
+  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id)
   @JoinColumn({ name: 'doctor_id' })
   doctor: Doctor;
 
-  @ManyToOne(() => Patient, (patient) => patient.patient_id, { eager: true })
+  @ManyToOne(() => Patient, (patient) => patient.patient_id)
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 

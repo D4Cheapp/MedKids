@@ -35,7 +35,7 @@ export class Doctor {
   @Column()
   office: string;
 
-  @ManyToOne(() => Specialty, (specialty) => specialty.specialty_id, { eager: true })
+  @ManyToOne(() => Specialty, (specialty) => specialty.specialty_id)
   @JoinColumn({ name: 'specialty_id' })
   specialty: Specialty;
 

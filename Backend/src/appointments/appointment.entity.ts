@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   CreateDateColumn,
@@ -19,19 +20,19 @@ export class Appointment {
   @PrimaryGeneratedColumn()
   appointment_id: number;
 
-  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id, { eager: true })
+  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id)
   @JoinColumn({ name: 'doctor_id' })
   doctor: Doctor;
 
-  @ManyToOne(() => Patient, (patient) => patient.patient_id, { eager: true })
+  @ManyToOne(() => Patient, (patient) => patient.patient_id)
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 
-  @ManyToOne(() => AppointmentType, (type) => type.type_id, { eager: true })
+  @ManyToOne(() => AppointmentType, (type) => type.type_id)
   @JoinColumn({ name: 'type_id' })
   type: AppointmentType;
 
-  @ManyToOne(() => AppointmentReason, (reason) => reason.reason_id, { eager: true })
+  @ManyToOne(() => AppointmentReason, (reason) => reason.reason_id)
   @JoinColumn({ name: 'reason_id' })
   reason: AppointmentReason;
 
@@ -45,11 +46,15 @@ export class Appointment {
   end_time: string;
 
   @Column({
-    type: 'enum',
-    enum: AppointmentStatus,
-    default: AppointmentStatus.SCHEDULED,
+    type: 'varchar',
+    length: 20,
+    default: 'Запланирован'
   })
-  status: AppointmentStatus;
+  @ApiProperty({
+    enum: Object.values(AppointmentStatus),
+    default: 'Запланирован'
+  })
+  status: string;
 
   @Column({ nullable: true })
   diagnosis: string;

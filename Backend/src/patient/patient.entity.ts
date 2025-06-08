@@ -50,7 +50,7 @@ export class Patient {
   @Column()
   parent_phone: string;
 
-  @ManyToOne(() => AddressDistrict, (address) => address.address_id, { eager: true })
+  @ManyToOne(() => AddressDistrict, (address) => address.address_id)
   @JoinColumn({ name: 'address_id' })
   address: AddressDistrict;
 
