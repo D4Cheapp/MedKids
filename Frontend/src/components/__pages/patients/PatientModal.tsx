@@ -37,7 +37,7 @@ export function PatientModal({ isOpen, onClose, patient }: PatientModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Информация о пациенте" size="5xl">
       <ModalContent className="p-6 space-y-6">
-        <ModalHeader>Данные пациента</ModalHeader>
+        <ModalHeader className="text-2xl font-semibold">Данные пациента</ModalHeader>
         <div className="bg-gray-50 p-4 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -103,13 +103,7 @@ export function PatientModal({ isOpen, onClose, patient }: PatientModalProps) {
           <Button variant="flat" onPress={onClose}>
             Закрыть
           </Button>
-          <Button
-            as={Link}
-            href={Routes.RegistrarPatientsAddAppointment.replace(
-              ':id',
-              patient.patient_id.toString()
-            )}
-            color="primary">
+          <Button as={Link} href={Routes.RegistrarAppointments} color="primary">
             Записать на прием
           </Button>
         </div>

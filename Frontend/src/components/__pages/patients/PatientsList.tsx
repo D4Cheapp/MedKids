@@ -1,9 +1,12 @@
 'use client';
 
 import { Patient } from '@/modules/patients/types';
-import { Input } from '@heroui/react';
+import { Button, Input } from '@heroui/react';
+import { Routes } from 'constants/routes';
 
 import { useEffect, useState } from 'react';
+
+import Link from 'next/link';
 
 import { PatientCard } from './PatientCard';
 import { PatientModal } from './PatientModal';
@@ -69,7 +72,17 @@ export function PatientsList({ patients: initialPatients }: PatientsListProps) {
     <>
       <div className="space-y-6">
         <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-lg font-medium mb-4">Поиск пациентов</h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold">Поиск пациентов</h2>
+            <Button
+              as={Link}
+              href={Routes.RegistrarPatientsCreate}
+              color="primary"
+              variant="bordered"
+              className="whitespace-nowrap">
+              Зарегистрировать пациента
+            </Button>
+          </div>
           <div className="grid grid-cols-3 gap-4">
             <Input
               label="Фамилия"

@@ -16,14 +16,6 @@ const menuItems = [
     label: 'Врачи',
     href: Routes.RegistrarDoctors,
   },
-  {
-    label: 'Причины записей',
-    href: Routes.RegistrarAppointmentReasons,
-  },
-  {
-    label: 'Типы записей',
-    href: Routes.RegistrarAppointmentTypes,
-  },
 ];
 
 export const RegistrarsNavbar = () => {
