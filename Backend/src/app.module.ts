@@ -28,6 +28,8 @@ import { Specialty } from './specialties/specialty.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    AppointmentReasonsModule,
+    AppointmentTypesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
