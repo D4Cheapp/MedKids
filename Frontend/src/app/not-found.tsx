@@ -1,9 +1,9 @@
-import { Routes } from 'constants/routes';
+import { AppRoutes } from 'constants/routes';
 
 import { redirect } from 'next/navigation';
 
 const NotFound = () => {
-  return redirect(Routes.home);
+  return redirect(AppRoutes.Home);
 };
 
 export default NotFound;

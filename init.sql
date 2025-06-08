@@ -129,3 +129,31 @@ CREATE INDEX idx_medical_records_doctor ON medical_records (doctor_id);
 CREATE INDEX idx_appointments_doctor_date ON appointments (doctor_id, appointment_date);
 CREATE INDEX idx_appointments_patient_date ON appointments (patient_id, appointment_date);
 
+INSERT INTO specialties (name, description) VALUES
+('Педиатр', 'Врач, специализирующийся на диагностике и лечении детей.'),
+('Офтальмолог', 'Специалист по заболеваниям глаз.'),
+('ЛОР', 'Врач-отоларинголог, лечит уши, горло и нос.'),
+('Невролог', 'Диагностика и лечение заболеваний нервной системы.'),
+('Хирург', 'Проводит операции и манипуляции.');
+
+-- Обновляем коды процедур на актуальные
+INSERT INTO procedure_types (code, name, is_diagnostic) VALUES
+('Z00.1', 'Общий осмотр ребёнка', FALSE),
+('B03.016.003', 'Общий клинический анализ крови с СОЭ и лейкоцитарной формулой', TRUE),
+('A06.09.006', 'Флюорография лёгких (профилактическая)', TRUE),
+('B04.014.004', 'Вакцинация (профилактическая)', FALSE),
+('A05.10.006', 'Регистрация электрокардиограммы (ЭКГ)', TRUE);
+
+INSERT INTO districts (district_number, description) VALUES
+(1, 'Участок №1, центральный район'),
+(2, 'Участок №2, южный район'),
+(3, 'Участок №3, северный район'),
+(4, 'Участок №4, западный район'),
+(5, 'Участок №5, восточный район');
+
+INSERT INTO address_districts (street, house, apartment, district_id) VALUES
+('Улица Ленина', '10', '5', 1),
+('Проспект Мира', '25А', '12', 2),
+('Улица Гагарина', '7', '3', 3),
+('Улица Пушкина', '15Б', '8', 4),
+('Бульвар Победы', '30', '22', 5);
