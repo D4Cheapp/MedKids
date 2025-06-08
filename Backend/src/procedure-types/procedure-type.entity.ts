@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { MedicalRecord } from '../medical-records/medical-record.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('procedure_types')
 export class ProcedureType {
@@ -14,7 +13,4 @@ export class ProcedureType {
 
   @Column({ default: false })
   is_diagnostic: boolean;
-
-  @OneToMany(() => MedicalRecord, record => record.procedureType)
-  medicalRecords: MedicalRecord[];
 }

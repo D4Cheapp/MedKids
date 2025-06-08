@@ -1,5 +1,10 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { Appointment } from '../appointments/appointment.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('appointment_reasons')
 export class AppointmentReason {
@@ -17,7 +22,4 @@ export class AppointmentReason {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => Appointment, appointment => appointment.reason)
-  appointments: Appointment[];
 }

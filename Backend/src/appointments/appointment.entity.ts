@@ -19,19 +19,19 @@ export class Appointment {
   @PrimaryGeneratedColumn()
   appointment_id: number;
 
-  @ManyToOne(() => Doctor, (doctor) => doctor.appointments, { eager: true })
+  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id, { eager: true })
   @JoinColumn({ name: 'doctor_id' })
   doctor: Doctor;
 
-  @ManyToOne(() => Patient, (patient) => patient.appointments, { eager: true })
+  @ManyToOne(() => Patient, (patient) => patient.patient_id, { eager: true })
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 
-  @ManyToOne(() => AppointmentType, (type) => type.appointments, { eager: true })
+  @ManyToOne(() => AppointmentType, (type) => type.type_id, { eager: true })
   @JoinColumn({ name: 'type_id' })
   type: AppointmentType;
 
-  @ManyToOne(() => AppointmentReason, (reason) => reason.appointments, { eager: true })
+  @ManyToOne(() => AppointmentReason, (reason) => reason.reason_id, { eager: true })
   @JoinColumn({ name: 'reason_id' })
   reason: AppointmentReason;
 

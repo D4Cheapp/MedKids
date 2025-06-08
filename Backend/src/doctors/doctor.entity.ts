@@ -4,14 +4,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Appointment } from '../appointments/appointment.entity';
 import { District } from '../districts/district.entity';
-import { MedicalRecord } from '../medical-records/medical-record.entity';
 import { Specialty } from '../specialties/specialty.entity';
 
 @Entity('doctors')
@@ -31,14 +28,14 @@ export class Doctor {
   @Column({ nullable: true })
   phone: string;
 
-  @ManyToOne(() => District, (district) => district.doctors, { onDelete: 'SET NULL' })
+  @ManyToOne(() => District, (district) => district.district_id, { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'district_id' })
   district: District;
 
   @Column()
   office: string;
 
-  @ManyToOne(() => Specialty, (specialty) => specialty.doctors, { eager: true })
+  @ManyToOne(() => Specialty, (specialty) => specialty.specialty_id, { eager: true })
   @JoinColumn({ name: 'specialty_id' })
   specialty: Specialty;
 
@@ -50,10 +47,4 @@ export class Doctor {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => Appointment, (appointment) => appointment.doctor)
-  appointments: Appointment[];
-
-  @OneToMany(() => MedicalRecord, (record) => record.doctor)
-  medicalRecords: MedicalRecord[];
 }

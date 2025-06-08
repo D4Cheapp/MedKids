@@ -1,3 +1,4 @@
+import { Patient } from 'src/patient/patient.entity';
 import {
   Column,
   CreateDateColumn,
@@ -9,7 +10,6 @@ import {
 } from 'typeorm';
 
 import { Doctor } from '../doctors/doctor.entity';
-import { Patient } from '../patient/patient.entity';
 import { ProcedureType } from '../procedure-types/procedure-type.entity';
 
 @Entity('medical_records')
@@ -17,15 +17,17 @@ export class MedicalRecord {
   @PrimaryGeneratedColumn()
   record_id: number;
 
-  @ManyToOne(() => ProcedureType, (procedureType) => procedureType.medicalRecords, { eager: true })
+  @ManyToOne(() => ProcedureType, (procedureType) => procedureType.procedure_type_id, {
+    eager: true,
+  })
   @JoinColumn({ name: 'procedure_type_id' })
   procedureType: ProcedureType;
 
-  @ManyToOne(() => Doctor, (doctor) => doctor.medicalRecords, { eager: true })
+  @ManyToOne(() => Doctor, (doctor) => doctor.doctor_id, { eager: true })
   @JoinColumn({ name: 'doctor_id' })
   doctor: Doctor;
 
-  @ManyToOne(() => Patient, (patient) => patient.medicalRecords, { eager: true })
+  @ManyToOne(() => Patient, (patient) => patient.patient_id, { eager: true })
   @JoinColumn({ name: 'patient_id' })
   patient: Patient;
 

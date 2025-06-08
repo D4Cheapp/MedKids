@@ -4,15 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { AddressDistrict } from '../address_districts/address_districts.entity';
-import { Appointment } from '../appointments/appointment.entity';
 import { GenderType } from '../constants/enums';
-import { MedicalRecord } from '../medical-records/medical-record.entity';
 
 @Entity('patients')
 export class Patient {
@@ -53,15 +50,9 @@ export class Patient {
   @Column()
   parent_phone: string;
 
-  @ManyToOne(() => AddressDistrict, (address) => address.patients, { eager: true })
+  @ManyToOne(() => AddressDistrict, (address) => address.address_id, { eager: true })
   @JoinColumn({ name: 'address_id' })
   address: AddressDistrict;
-
-  @OneToMany(() => Appointment, (appointment) => appointment.patient)
-  appointments: Appointment[];
-
-  @OneToMany(() => MedicalRecord, (record) => record.patient)
-  medicalRecords: MedicalRecord[];
 
   @CreateDateColumn({
     type: 'timestamp',

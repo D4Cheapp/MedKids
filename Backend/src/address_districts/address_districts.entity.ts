@@ -4,13 +4,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { District } from '../districts/district.entity';
-import { Patient } from '../patient/patient.entity';
 
 @Entity('address_districts')
 export class AddressDistrict {
@@ -26,12 +24,9 @@ export class AddressDistrict {
   @Column({ nullable: true })
   apartment: string;
 
-  @ManyToOne(() => District, (district) => district.addresses, { eager: true })
+  @ManyToOne(() => District, (district) => district.district_id, { eager: true })
   @JoinColumn({ name: 'district_id' })
   district: District;
-
-  @OneToMany(() => Patient, (patient) => patient.address)
-  patients: Patient[];
 
   @CreateDateColumn({
     type: 'timestamp',

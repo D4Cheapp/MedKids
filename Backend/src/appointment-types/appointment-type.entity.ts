@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Appointment } from '../appointments/appointment.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('appointment_types')
 export class AppointmentType {
@@ -14,7 +13,4 @@ export class AppointmentType {
 
   @Column({ type: 'interval' })
   duration: string;
-
-  @OneToMany(() => Appointment, appointment => appointment.type)
-  appointments: Appointment[];
 }
