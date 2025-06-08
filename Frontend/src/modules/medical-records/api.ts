@@ -1,10 +1,7 @@
 import { ApiMethods } from 'utils/request';
 import { request } from 'utils/request';
-import {
-  MedicalRecord,
-  CreateMedicalRecordDto,
-  UpdateMedicalRecordDto,
-} from './types';
+
+import { CreateMedicalRecordDto, MedicalRecord, UpdateMedicalRecordDto } from './types';
 
 export const medicalRecordsApi = {
   create: (data: CreateMedicalRecordDto) =>
@@ -24,7 +21,7 @@ export const medicalRecordsApi = {
   getByPatientId: (patientId: string | number) =>
     request<MedicalRecord[]>({
       method: ApiMethods.GET,
-      url: `/patients/${patientId}/medical-records`,
+      url: `/medical-records/patient/${patientId}`,
     }),
 
   getById: (recordId: string | number) =>

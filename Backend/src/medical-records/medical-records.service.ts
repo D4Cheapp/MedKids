@@ -30,7 +30,7 @@ export class MedicalRecordsService {
   async findAllByPatient(patientId: number): Promise<MedicalRecord[]> {
     return this.medicalRecordRepository.find({
       where: { patient: { patient_id: patientId } },
-      relations: ['procedureType', 'doctor'],
+      relations: ['procedureType', 'doctor', 'patient'],
       order: { created_at: 'DESC' },
     });
   }

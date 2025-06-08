@@ -1,5 +1,4 @@
 import { camelToSnake } from './camel-to-snake';
-import { snakeToCamel } from './snake-to-camel';
 
 export enum ApiMethods {
   GET = 'GET',
@@ -47,7 +46,6 @@ export const request = async <T>({ method, url, body, isForm }: Props): Promise<
       return response;
     })
     .then(data => data.json())
-    .then(snakeToCamel)
     .then(data => data as T)
     .catch(error => {
       console.error('Error fetching data:', error);

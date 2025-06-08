@@ -1,44 +1,44 @@
-import { Doctor } from '../types/doctors';
-import { Patient } from '../types/patients';
+import { AppointmentStatus } from 'constants/appointment-status';
 
-export type AppointmentStatus = 'Запланирован' | 'Завершен' | 'Отменен' | 'Неявка';
+import { Doctor } from '../doctors/types';
+import { Patient } from '../patients/types';
 
 export interface AppointmentType {
-  id: number;
+  appointment_type_id: number;
   name: string;
   duration: number; // in minutes
 }
 
 export interface AppointmentReason {
-  id: number;
+  appointment_type_id: number;
   name: string;
 }
 
 export interface Appointment {
-  id: number;
+  appointment_id: number;
   doctor: Doctor;
   patient: Patient;
   type: AppointmentType;
   reason: AppointmentReason;
-  appointmentDate: string; // YYYY-MM-DD
-  startTime: string; // HH:mm:ss
-  endTime: string; // HH:mm:ss
+  appointment_date: string; // YYYY-MM-DD
+  start_time: string; // HH:mm:ss
+  end_time: string; // HH:mm:ss
   status: AppointmentStatus;
   diagnosis?: string;
   recommendations?: string;
   comments?: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CreateAppointmentDto {
-  doctorId: number;
-  patientId: number;
-  typeId: number;
-  reasonId: number;
-  appointmentDate: string; // YYYY-MM-DD
-  startTime: string; // HH:mm:ss
-  endTime: string; // HH:mm:ss
+  doctor_id: number;
+  patient_id: number;
+  type_id: number;
+  reason_id: number;
+  appointment_date: string; // YYYY-MM-DD
+  start_time: string; // HH:mm:ss
+  end_time: string; // HH:mm:ss
   status?: AppointmentStatus;
   comments?: string;
 }
@@ -49,15 +49,15 @@ export interface UpdateAppointmentDto extends Partial<CreateAppointmentDto> {
 }
 
 export interface AppointmentFilters {
-  doctorId?: number;
-  patientId?: number;
-  startDate?: string; // YYYY-MM-DD
-  endDate?: string; // YYYY-MM-DD
+  doctor_id?: number;
+  patient_id?: number;
+  start_date?: string; // YYYY-MM-DD
+  end_date?: string; // YYYY-MM-DD
   status?: string;
 }
 
 export interface DoctorScheduleParams {
-  startDate: string; // YYYY-MM-DD
+  start_date: string; // YYYY-MM-DD
 }
 
 export interface UpdateAppointmentStatusDto {

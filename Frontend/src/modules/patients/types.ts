@@ -1,7 +1,7 @@
-import { GenderType } from '../types/common';
+import { Gender } from 'constants/gender';
 
 export interface Address {
-  id: number;
+  address_id: number;
   city: string;
   street: string;
   house: string;
@@ -13,39 +13,39 @@ export interface Address {
 }
 
 export interface Patient {
-  id: number;
-  lastName: string;
-  firstName: string;
-  middleName?: string;
-  gender: GenderType;
-  birthDate: string;
-  phoneNumber: string;
+  patient_id: number;
+  last_name: string;
+  first_name: string;
+  middle_name?: string;
+  gender: Gender;
+  birth_date: string;
+  phone_number: string;
   email?: string;
-  parentPhone: string;
+  parent_phone: string;
   address: Address;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CreatePatientDto {
-  lastName: string;
-  firstName: string;
-  middleName?: string;
-  gender: GenderType;
-  birthDate: string;
-  phoneNumber: string;
+  last_name: string;
+  first_name: string;
+  middle_name?: string;
+  gender: Gender;
+  birth_date: string;
+  phone_number: string;
   email?: string;
-  parentPhone: string;
-  addressId: number;
+  parent_phone: string;
+  address_id: number;
 }
 
 export interface UpdatePatientDto extends Partial<CreatePatientDto> {}
 
 export interface PatientFilters {
-  lastName?: string;
-  firstName?: string;
-  middleName?: string;
-  birthDate?: string;
-  phoneNumber?: string;
-  parentPhone?: string;
+  last_name?: string;
+  first_name?: string;
+  middle_name?: string;
+  birth_date?: string;
+  phone_number?: string;
+  parent_phone?: string;
 }

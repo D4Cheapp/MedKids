@@ -1,37 +1,24 @@
 import { Patient } from '../patients/types';
 
 export interface MedicalRecord {
-  id: number;
+  medical_record_id: number;
   patient: Patient;
   diagnosis: string;
   treatment: string;
+  prescriptions: string;
   notes?: string;
-  recordDate: string;
-  nextVisitDate?: string;
-  attachments: Array<{
-    id: number;
-    name: string;
-    url: string;
-    mimeType: string;
-    size: number;
-  }>;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CreateMedicalRecordDto {
-  patientId: number;
+  patient_id: number;
+  doctor_id: number;
+  procedure_type_id: number;
   diagnosis: string;
   treatment: string;
+  prescriptions: string;
   notes?: string;
-  recordDate: string;
-  nextVisitDate?: string;
-  attachments?: Array<{
-    name: string;
-    url: string;
-    mimeType: string;
-    size: number;
-  }>;
 }
 
 export interface UpdateMedicalRecordDto extends Partial<CreateMedicalRecordDto> {}

@@ -1,27 +1,20 @@
 import { PaginationParams } from '../types/common';
 
 export interface AppointmentType {
-  id: number;
+  type_id: number;
   name: string;
-  description?: string;
-  duration: number; // in minutes
-  isActive: boolean;
-  colorCode?: string;
-  createdAt: string;
-  updatedAt: string;
+  code?: string;
 }
 
 export interface CreateAppointmentTypeDto {
   name: string;
-  description?: string;
-  duration: number;
-  isActive?: boolean;
-  colorCode?: string;
+  code?: string;
+  duration?: string;
 }
 
 export interface UpdateAppointmentTypeDto extends Partial<CreateAppointmentTypeDto> {}
 
 export interface AppointmentTypeFilters extends PaginationParams {
   search?: string;
-  isActive?: boolean;
+  is_active?: boolean;
 }

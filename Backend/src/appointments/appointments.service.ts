@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Between, MoreThan, Not, Repository } from 'typeorm';
+import { Between, Not, Repository } from 'typeorm';
 
 import { AppointmentReason } from '../appointment-reasons/appointment-reason.entity';
 import { AppointmentType } from '../appointment-types/appointment-type.entity';
@@ -233,11 +233,11 @@ export class AppointmentsService {
     }
   }
 
-  async getDoctorSchedule(doctorId: number, startDate: string): Promise<Appointment[]> {
+  async getDoctorSchedule(doctorId: number): Promise<Appointment[]> {
     return this.appointmentRepository.find({
       where: {
         doctor: { doctor_id: doctorId },
-        appointment_date: MoreThan(new Date(startDate)),
+        status: AppointmentStatus.SCHEDULED,
       },
       relations: ['patient', 'type'],
       order: { appointment_date: 'ASC', start_time: 'ASC' },

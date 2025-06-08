@@ -9,7 +9,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 import { AppointmentStatus } from 'src/constants/enums';
 
@@ -31,6 +31,11 @@ export class AppointmentsController {
 
   @Get()
   @ApiOperation({ summary: 'Получить список записей на прием' })
+  @ApiQuery({ name: 'doctorId', required: false })
+  @ApiQuery({ name: 'patientId', required: false })
+  @ApiQuery({ name: 'startDate', required: false })
+  @ApiQuery({ name: 'endDate', required: false })
+  @ApiQuery({ name: 'status', required: false })
   findAll(
     @Query('doctorId') doctorId?: number,
     @Query('patientId') patientId?: number,
@@ -70,14 +75,8 @@ export class AppointmentsController {
 
   @Get('doctor/:doctorId/schedule')
   @ApiOperation({ summary: 'Получить расписание врача' })
-  getDoctorSchedule(
-    @Param('doctorId', ParseIntPipe) doctorId: number,
-    @Query('startDate') startDate: string
-  ): Promise<Appointment[]> {
-    if (!startDate) {
-      throw new Error('Необходимо указать дату начала');
-    }
-    return this.appointmentsService.getDoctorSchedule(doctorId, startDate);
+  getDoctorSchedule(@Param('doctorId') doctorId: number): Promise<Appointment[]> {
+    return this.appointmentsService.getDoctorSchedule(doctorId);
   }
 
   @Put(':id/status')

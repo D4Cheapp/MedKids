@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ApiExtraModels, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import { ApiExtraModels, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { PatientSearchDto } from './dto/patient-search.dto';
@@ -11,6 +11,14 @@ import { PatientService } from './patient.service';
 @ApiExtraModels(Patient)
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Получить пациента по ID' })
+  @ApiResponse({ status: 200, description: 'Возвращает запрошенного пациента.' })
+  @ApiResponse({ status: 404, description: 'Пациент не найден.' })
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Patient | null> {
+    return this.patientService.findOne(id);
+  }
 
   @Get()
   @ApiOperation({

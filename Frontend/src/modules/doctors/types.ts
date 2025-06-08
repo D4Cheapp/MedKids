@@ -1,37 +1,40 @@
 export interface District {
-  id: number;
+  district_id: number;
   name: string;
 }
 
 export interface Specialty {
-  id: number;
+  specialty_id: number;
   name: string;
 }
 
 export interface Doctor {
-  id: number;
-  lastName: string;
-  firstName: string;
-  middleName?: string;
-  photoUrl?: string;
-  specialties: Specialty[];
+  doctor_id: number;
+  last_name: string;
+  first_name: string;
+  middle_name?: string;
+  photo_url?: string;
+  specialty: Specialty;
   districts: District[];
-  experienceYears: number;
+  experience_years: number;
   education?: string;
   description?: string;
-  schedule: Record<string, {
-    isWorking: boolean;
-    startTime?: string;
-    endTime?: string;
-    breakStartTime?: string;
-    breakEndTime?: string;
-  }>;
-  createdAt: string;
-  updatedAt: string;
+  schedule: Record<
+    string,
+    {
+      is_working: boolean;
+      start_time?: string;
+      end_time?: string;
+      break_start_time?: string;
+      break_end_time?: string;
+    }
+  >;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface DoctorFilters {
-  specialtyId?: number;
-  districtId?: number;
+  specialty_id?: number;
+  district_id?: number;
   search?: string;
 }

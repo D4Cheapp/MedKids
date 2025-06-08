@@ -17,6 +17,10 @@ export class PatientService {
     private addressRepository: Repository<AddressDistrict>
   ) {}
 
+  async findOne(id: number) {
+    return this.patientRepository.findOne({ where: { patient_id: id } });
+  }
+
   async searchPatients(searchParams: PatientSearchDto): Promise<Patient[]> {
     try {
       const where: any = {};
