@@ -1,6 +1,11 @@
 export enum Routes {
   Home = '/',
   DoctorAppointments = '/doctor/appointments',
-  Doctor = '/doctor/appointments',
-  Users = '/users',
+  RegistrarPatients = '/registrar/patients',
+  RegistrarPatientsCreate = '/registrar/patients/create',
+  RegistrarPatientsAddAppointment = '/registrar/patients/:id/appointments',
+  RegistrarAppointments = '/registrar/appointments',
+  RegistrarDoctors = '/registrar/doctors',
+  RegistrarAppointmentReasons = '/registrar/appointment-reasons',
+  RegistrarAppointmentTypes = '/registrar/appointment-types',
 }

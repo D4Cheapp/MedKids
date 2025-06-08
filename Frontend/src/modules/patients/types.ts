@@ -16,13 +16,14 @@ export interface Patient {
   patient_id: number;
   last_name: string;
   first_name: string;
-  middle_name?: string;
-  gender: Gender;
+  middle_name: string;
   birth_date: string;
-  phone_number: string;
-  email?: string;
+  gender: Gender;
+  phone: string;
+  parent_last_name: string;
+  parent_first_name: string;
+  parent_middle_name: string;
   parent_phone: string;
-  address: Address;
   created_at: string;
   updated_at: string;
 }
@@ -33,8 +34,10 @@ export interface CreatePatientDto {
   middle_name?: string;
   gender: Gender;
   birth_date: string;
-  phone_number: string;
-  email?: string;
+  phone: string;
+  parent_last_name: string;
+  parent_first_name: string;
+  parent_middle_name: string;
   parent_phone: string;
   address_id: number;
 }
@@ -46,6 +49,6 @@ export interface PatientFilters {
   first_name?: string;
   middle_name?: string;
   birth_date?: string;
-  phone_number?: string;
+  phone?: string;
   parent_phone?: string;
 }

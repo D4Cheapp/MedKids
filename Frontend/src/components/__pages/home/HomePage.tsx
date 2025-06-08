@@ -14,7 +14,7 @@ const HomePage = () => {
     if (role === 'doctor') {
       router.push(Routes.DoctorAppointments);
     } else {
-      router.push(Routes.Users);
+      router.push(Routes.RegistrarPatients);
     }
   };
 

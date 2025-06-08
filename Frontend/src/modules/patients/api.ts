@@ -1,12 +1,13 @@
 import { ApiMethods } from 'utils/request';
 import { request } from 'utils/request';
-import { Patient, CreatePatientDto, UpdatePatientDto, PatientFilters } from './types';
+
+import { CreatePatientDto, Patient, PatientFilters, UpdatePatientDto } from './types';
 
 export const patientsApi = {
   search: (filters?: PatientFilters) =>
     request<Patient[]>({
       method: ApiMethods.GET,
-      url: '/patients/search',
+      url: '/patients',
       body: filters,
     }),
 
